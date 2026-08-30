@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maela – Premium Joint Elixir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-image {
+            max-width: 300px;
+            height: auto;
+            margin: 2rem auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Pricing Tiers */
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .tier {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tier.vip {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, #fffef5 0%, #fafaf8 100%);
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #d4af37;
+            color: #1a1a1a;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .tier h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tier-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            min-height: 60px;
+        }
+
+        .tier-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+
+        .tier-price-note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-commitment {
+            background: rgba(0,0,0,0.03);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .tier-benefits {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-benefits li {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .tier-benefits li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .tier-button {
+            width: 100%;
+            padding: 1rem;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tier.vip .tier-button {
+            background: #d4af37;
+            color: #1a1a1a;
+        }
+
+        .tier-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .tier-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Product Info */
+        .product-info {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-info h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .formula {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .formula h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .formula-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .formula-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .testimonial:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .tier.vip {
+                transform: scale(1);
+            }
+
+            .tiers {
+                grid-template-columns: 1fr;
+            }
+
+            .tier-price {
+                font-size: 2rem;
+            }
+        }
+
+        .slots-remaining {
+            font-size: 0.85rem;
+            color: #d4af37;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .sold-out {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .sold-out:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MAELA</h1>
+        <p>Gold Hidden in Gel Cream</p>
+    </header>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h2>Premium Joint Elixir</h2>
+            <p>Crafted with Bee Venom, Arnica, and Magnesium. Finally available to you.</p>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect fill='%23000' width='200' height='300' rx='20'/%3E%3Ccircle cx='100' cy='100' r='50' fill='%23333'/%3E%3Ctext x='100' y='200' text-anchor='middle' fill='%23fff' font-size='16' font-weight='bold'%3EMAELA%3C/text%3E%3C/svg%3E" alt="Maela Jar" class="hero-image">
+            <p style="color: #888; font-size: 0.9rem;">Product in stock. Limited quantities available.</p>
+        </section>
+
+        <!-- Pricing Tiers -->
+        <section class="tiers">
+            <!-- VIP Tier -->
+            <div class="tier vip">
+                <div class="tier-badge">Exclusive</div>
+                <h3>VIP Founding Member</h3>
+                <p class="tier-description">Join the inner circle. Premium access, locked pricing, insider benefits.</p>
+                <div class="tier-price">€55</div>
+                <p class="tier-price-note">per unit, locked forever</p>
+                
+                <div class="tier-commitment">
+                    <strong>Commitment:</strong> 3 units over 3 months<br>
+                    (€165 total)
+                </div>
+
+                <ul class="tier-benefits">
+                    <li>€55 per unit locked forever (even when price increases)</li>
+                    <li>Direct email access for questions & insights</li>
+                    <li>First access to new Maela products</li>
+                    <li>Founding Member status</li>
+                    <li>Priority shipping</li>
+                </ul>
+
+                <button class="tier-button" onclick="handleVIPClick()">Become VIP</button>
+                <div class="slots-remaining" id="vip-slots">20 slots available</div>
+            </div>
+
+            <!-- Early Bird Tier -->
+            <div class="tier">
+                <div class="tier-badge">Limited</div>
+                <h3>Early Bird</h3>
+                <p class="tier-description">Secure yours at the founding price. One-time purchase.</p>
+                <div class="tier-price">€55</div>
+                <p class="tier-price-note">one-time purchase</p>
+
+                <div class="tier-commitment">
+                    50 units available at this price
+                </div>
+
+                <ul class="tier-benefits">
+                    <li>€55 per unit (price jumps to €79 after Early Bird)</li>
+                    <li>One-time purchase</li>
+                    <li>Standard shipping</li>
+                    <li>Access to community updates</li>
+                </ul>
+
+                <button class="tier-button" onclick="window.location.href='https://buy.stripe.com/5kQ6oIgDy7ABggHczA93y00'">Buy Early Bird</button>
+                <div class="slots-remaining" id="early-slots">50 units available</div>
+            </div>
+
+            <!-- Regular Presale Tier -->
+            <div class="tier">
+                <h3>Regular Presale</h3>
+                <p class="tier-description">After Early Bird. Full price, one-time purchase.</p>
+                <div class="tier-price">€79</div>
+                <p class="tier-price-note">per unit</p>
+
+                <div class="tier-commitment">
+                    129 units available
+                </div>
+
+                <ul class="tier-benefits">
+                    <li>€79 per unit</li>
+                    <li>One-time purchase</li>
+                    <li>Standard shipping</li>
+                    <li>Access to community updates</li>
+                </ul>
+
+                <button class="tier-button" onclick="window.location.href='https://buy.stripe.com/5kQ6oIgDy7ABggHczA93y00'">Join Presale</button>
+                <div class="slots-remaining">129 units available</div>
+            </div>
+        </section>
+
+        <!-- Product Info -->
+        <section class="product-info">
+            <h2>The Formula</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">Each jar is carefully formulated for maximum efficacy. Tested by real users with real results.</p>
+            
+            <div class="formula">
+                <h3>Premium Ingredients</h3>
+                <div class="formula-item">
+                    <span>MSM</span>
+                    <span><strong>6.20%</strong></span>
+                </div>
+                <div class="formula-item">
+                    <span>Magnesium Chloride</span>
+                    <span><strong>6.00%</strong></span>
+                </div>
+                <div class="formula-item">
+                    <span>Arnica Montana</span>
+                    <span><strong>3.00%</strong></span>
+                </div>
+                <div class="formula-item">
+                    <span>Platycladus Orientalis</span>
+                    <span><strong>1.10%</strong></span>
+                </div>
+                <div class="formula-item">
+                    <span>Tea Tree Oil</span>
+                    <span><strong>0.50%</strong></span>
+                </div>
+                <div class="formula-item">
+                    <span>Borneol</span>
+                    <span><strong>0.15%</strong></span>
+                </div>
+                <div class="formula-item">
+                    <span>Bee Venom</span>
+                    <span><strong>0.05%</strong></span>
+                </div>
+            </div>
+
+            <p style="color: #666; font-size: 0.9rem;"><strong>Why it works:</strong> Maela combines time-tested botanicals with proven compounds. Magnesium supports muscle relaxation. Arnica reduces inflammation. Bee venom stimulates natural healing responses. No shortcuts. No filler.</p>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <h2>From Our Testers</h2>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"After years of joint pain, Maela was the only thing that actually worked. I use it every day."</p>
+                <p class="testimonial-author">— Bernarda, Ptuj</p>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text">"The warmth sets in within minutes. It's like nothing else I've tried. Worth every euro."</p>
+                <p class="testimonial-author">— Andreja</p>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text">"Real product, real results. Matej clearly built this for people who actually suffer, not for marketing."</p>
+                <p class="testimonial-author">— Zoran</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p style="margin-bottom: 1rem;">&copy; 2026 Maela. Handcrafted in Slovenia.</p>
+        <p style="font-size: 0.85rem; color: #999;">Questions? <a href="mailto:contact@example.com">Get in touch</a></p>
+    </footer>
+
+    <script>
+        function handleVIPClick() {
+            const message = "VIP Founding Member enrollment coming soon. Email matej@example.com to reserve your slot.";
+            alert(message);
+            // When ready, replace with: window.location.href='YOUR_VIP_STRIPE_LINK';
+        }
+    </script>
+</body>
+</html>
